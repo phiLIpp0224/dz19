@@ -3,23 +3,10 @@
 
 void RETUrnion (int qwe, int* a, int* res) 
 {
-   
-    for (int i = 0; i < qwe; i++) 
-    {
-        
-        for (int j = 0; j < qwe; j++) 
-        {
-            
-            if (a[j] == i + 1) 
-            {
-                res[i] = j;
-                break;
-             }
-        }
-    }
-    return;
+   for (int i = 0; i < qwe; i++) res[a[i] - 1] = i;
+    
+   return;
 }
-
 
 
 
