@@ -1,0 +1,55 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <set>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+	ifstream file("gc_4_1");
+	int V, E;
+	file >> V >> E;
+
+	vector<pair<int, int>> edges(E);
+	for (int i = 0; i < E; i++) 
+	{
+		file >> edges[i].first >> edges[i].second;
+	}
+
+	vector<int> color(V, 0);
+	color[0] = 1;
+	for (int i = 1; i < V; i++) 
+	{				//цвет i-ой вершины.
+	  std::set<int> colors;
+
+	  for (int j = 0; j < E; j++) 
+	  {				
+	    if (edges[j].first == i)
+	    {				
+	      colors.insert(color[edges[j].second]);			
+	    }
+	    else if (edges[j].second == i) 
+	    {		       
+	      colors.insert(color[edges[j].first]);		       
+	    }
+	  }
+	  
+	  
+	  for (int j = 1; j < V + 1; j++) 
+	  {			
+	    auto search = colors.find(j);				
+	    if (search != colors.end())
+	    {				
+	    }
+	    else {																	
+	      color[i] = j;						
+	      break;
+	    }
+	  }
+	}
+	
+
+	std::sort(color.begin(), color.end());
+	cout << *(color.end() - 1);
+}
